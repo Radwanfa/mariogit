@@ -3,7 +3,7 @@ package package1;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
 
-import static org.lwjgl.glfw.GLFW.glfwInit;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class Window {
     private int width, height;
@@ -38,8 +38,16 @@ public class Window {
 
         //initzialize GLFW
         if (!glfwInit()) {
-            throw new IllegalStateException("unable to initzialize glfw")
+            throw new IllegalStateException("unable to initzialize glfw");
         }
+
+        // configure GLFW
+        glfwDefaultWindowHints();
+        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
+
+        // create window
     }
 
     public void loop() {
